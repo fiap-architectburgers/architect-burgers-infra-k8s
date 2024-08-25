@@ -1,0 +1,8 @@
+.idea/
+
+# Para este setup de estudo nao precisamos persistir o estado 
+        # Recursos aws sao destruidos automaticamente
+.terraform
+
+terraform.tfstate*
+
