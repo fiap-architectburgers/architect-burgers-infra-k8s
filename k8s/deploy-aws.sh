@@ -41,6 +41,14 @@ then
   exit 1
 fi
 
+# TODO Automatizar conteudo do arquivo aws-configs
+kubectl apply -f ${baseDir}/app/aws-configs.yml
+if [ $? -ne 0 ]
+then
+  echo "Failed to create aws-configs"
+  exit 1
+fi
+
 kubectl apply -f ${baseDir}/app/app-deployment.yml
 if [ $? -ne 0 ]
 then
