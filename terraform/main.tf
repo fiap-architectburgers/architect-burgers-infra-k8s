@@ -36,7 +36,7 @@ data "aws_subnet" "app-subnet-3" {
 ###
 resource "aws_eks_cluster" "app-cluster" {
   name     = "app-cluster"
-  role_arn = data.aws_iam_role.awsacademy-role.arn
+  role_arn = data.aws_iam_role.awsacademy-roleErr.arn
 
   version = "1.30"
 
