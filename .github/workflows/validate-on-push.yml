@@ -1,0 +1,16 @@
+name: Terraform validate
+run-name: Validating after ${{github.actor}}'s changes
+on: push
+
+jobs:
+  terraform-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Terraform validate
+        working-directory: ./terraform
+        run: terraform validate
+
+
