@@ -6,12 +6,8 @@ jobs:
   terraform-validate:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Terraform init
-        working-directory: ./terraform
-        run: terraform init
+      - name: Setup
+        uses: ./.github/workflows/setup-terraform-and-aws.yml
 
       - name: Terraform validate
         working-directory: ./terraform
