@@ -13,6 +13,7 @@ jobs:
 
   terraform-plan:
     runs-on: ubuntu-latest
+    needs: aws-and-terraform-setup
     steps:
       - name: Terraform plan
         working-directory: ./terraform
