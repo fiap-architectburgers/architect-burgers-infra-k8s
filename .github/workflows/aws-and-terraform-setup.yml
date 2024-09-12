@@ -1,0 +1,44 @@
+name: AWS and Terraform Setup
+
+on:
+  workflow_call:
+    inputs:
+      TF_STATE_BUCKET_NAME:
+        required: true
+        type: string
+      TF_STATE_BUCKET_PATH:
+        required: true
+        type: string
+      TF_LOCK_TABLE_NAME:
+        required: true
+        type: string
+
+jobs:
+  pre-reqs-terraform-aws:
+    name: "AWS Pre Requirements"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: "Configure AWS Credentials" 
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: us-east-1
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+
+      - name: Create S3 Bucket
+        run: ./utils/create-s3-bucket.sh ${{ inputs.TF_STATE_BUCKET_NAME }}
+
+      - name: Create Dynamodb table
+        run: ./utils/create-dyndb-table.sh ${{ inputs.TF_LOCK_TABLE_NAME }}
+
+      - name: Terraform Init
+        run: |
+          cd terraform && terraform init \
+            -backend-config="bucket=${{ inputs.TF_STATE_BUCKET_NAME }}" \
+            -backend-config="key=${{ inputs.TF_STATE_BUCKET_PATH }}" \
+            -backend-config="region=us-east-1" \
+            -backend-config="dynamodb_table=${{ inputs.TF_LOCK_TABLE_NAME }}"

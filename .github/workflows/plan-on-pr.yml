@@ -1,0 +1,19 @@
+name: Terraform plan
+run-name: Terraform plan
+on: push   # TODO: Especificar apenas apos PR aberto
+
+jobs:
+  aws-and-terraform-setup:
+    uses: ./.github/workflows/aws-and-terraform-setup.yml
+    secrets: inherit
+    with:
+      TF_STATE_BUCKET_NAME: ${{ vars.TF_STATE_BUCKET_NAME }}
+      TF_STATE_BUCKET_PATH: ${{ vars.TF_STATE_BUCKET_PATH }}
+      TF_LOCK_TABLE_NAME: ${{ vars.TF_LOCK_TABLE_NAME }}
+
+  terraform-plan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Terraform plan
+        working-directory: ./terraform
+        run: terraform plan
