@@ -1,5 +1,5 @@
-name: Terraform plan
-run-name: Terraform plan
+name: Deploy application
+run-name: Terraform and k8s deployment
 on: push   # TODO: Em teste! Mudar condição para apenas na branch main! (PR aceito)
 
 jobs:
