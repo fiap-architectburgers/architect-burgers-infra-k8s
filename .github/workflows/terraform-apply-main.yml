@@ -1,6 +1,9 @@
-name: Deploy application
-run-name: Terraform and k8s deployment
-on: push   # TODO: Em teste! Mudar condição para apenas na branch main! (PR aceito)
+name: Terraform apply
+run-name: Deploy application infra
+on:
+  push:
+    branches:
+      - main      # Apenas on push na main (PR aceito)
 
 jobs:
   terraform-apply:
@@ -13,13 +16,3 @@ jobs:
       TF_STATE_BUCKET_PATH: ${{vars.TF_STATE_BUCKET_PATH}}
       TF_LOCK_TABLE_NAME: ${{vars.TF_LOCK_TABLE_NAME}}
     secrets: inherit
-
-  kubernetes-deploy:
-    runs-on: ubuntu-latest
-    needs: terraform-apply
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: TODO
-        run: echo "EM CONSTRUÇÃO"

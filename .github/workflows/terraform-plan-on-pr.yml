@@ -1,5 +1,5 @@
 name: Terraform plan
-run-name: Terraform plan
+run-name: Infra-app Terraform plan
 on:
   pull_request:
     types:
