@@ -1,6 +1,10 @@
 name: Terraform plan
 run-name: Terraform plan
-on: push   # TODO: Especificar apenas apos PR aberto
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
 
 jobs:
   terraform-plan:
