@@ -1,5 +1,5 @@
 name: Terraform apply
-run-name: Deploy application infra
+run-name: Deploy application k8s infra
 on:
   push:
     branches:

@@ -1,5 +1,5 @@
 name: Terraform validate
-run-name: Validating infra-app after ${{github.actor}}'s changes
+run-name: Validating infra-k8s after ${{github.actor}}'s changes
 on: push
 
 jobs:
