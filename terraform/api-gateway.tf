@@ -4,7 +4,9 @@
 # junto com o cluster k8s, pois o deployment da aplicação
 # requer que a URL final já esteja disponível para parametrizações
 # de webhook.
-# Posteriormente será feita a integração com o backend
+#
+# Integração com o backend ocorre após aplicação rodando, junto aos
+# workflows de setup de Autenticação
 
 resource "aws_apigatewayv2_api" "http-api" {
   name          = "http-api"
