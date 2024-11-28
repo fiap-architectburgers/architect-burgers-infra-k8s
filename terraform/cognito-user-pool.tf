@@ -68,7 +68,7 @@ resource "aws_cognito_user_pool_client" "app-token-client" {
 }
 
 resource "aws_cognito_user_pool_domain" "cognito-domain" {
-  domain       = "archburgers-customers"
+  domain       = "fiap-archburgers-customers"
   user_pool_id = aws_cognito_user_pool.customer-logins.id
 }
 
